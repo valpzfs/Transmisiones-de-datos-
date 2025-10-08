@@ -5,7 +5,8 @@
 #include <sstream>
 using namespace std;
 
-void longestPalindrome(string s) {
+//Complejidad O(n)
+string longestPalindrome(string s, int &start) {
     string T = "^";
     for (char c : s) {
         T += "#";
@@ -41,8 +42,8 @@ void longestPalindrome(string s) {
             centerIndex = i;
         }
     }
-    int start = (centerIndex - maxLen) / 2;
-    cout << s.substr(start, maxLen) << endl;
+    start = (centerIndex - maxLen) / 2;
+    return s.substr(start,maxLen);
 }
 
 string KMP(){
@@ -52,6 +53,7 @@ string KMP(){
 
 int main() {
     vector<string> transmissions;
+    vector <string> mirrorCodes;
     for(int i=0;i<3;i++){
         string num;
         //Hay que cambiar esta seccion por algo que combierta i a string
@@ -80,9 +82,12 @@ int main() {
         }
     }
     for (int i=0;i<transmissions.size();i++){
-        cout<<transmissions[i]<<endl;
+        //cout<<transmissions[i]<<endl;
+        int positionHolder;
+        mirrorCodes.push_back(longestPalindrome(transmissions[i], positionHolder));
+        cout<<mirrorCodes[i]<<endl;
+        cout<<positionHolder<<endl;
     }
-    string str="dnjklhcknfgdghhshhshdg";
-    longestPalindrome(str);
+
     return 0;
 }
