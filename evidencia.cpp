@@ -1,3 +1,14 @@
+
+
+// E1. Actividad Integradora 1 
+//
+/*
+
+    EQUIPO:
+    Amparo Alcaraz Tonella A01253885
+    Valeria López Flores A00838648
+
+*/
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -275,8 +286,6 @@ int main() {
     } else {
         cout<< "No se pudo escribir en el achivo de output";
     }
-
-
 
     return 0;
 }
