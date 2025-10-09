@@ -107,3 +107,7 @@ C8F8C
 transmission3.txt ==> Posicion: 351
 0FFFFFFF0
 ============
+Los Substrings mas largos son:
+T1 - T2: 943A5
+T1 - T3: CDEC
+T2 - T3: 571139

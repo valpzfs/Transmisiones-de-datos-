@@ -97,6 +97,8 @@ string longestPalindrome(string s, int &start) {
     return s.substr(start,maxLen);
 }
 
+
+
 void PalindromeOutput(vector<string> transmissions, string &outputText){
     string mirrorCodes;
     outputText += "============\n";
@@ -110,7 +112,52 @@ void PalindromeOutput(vector<string> transmissions, string &outputText){
         
     }
     
+
+}
+
+//Complejidad O(n*m)
+string LCSubstring(const string& str1, const string& str2) {
+    int str1Size = str1.size();
+    int str2Size = str2.size();
+
+    if(str1Size == 0 || str2Size == 0){
+        return "";
+    }
+    vector<vector<int>> dp(str1Size + 1, vector<int>(str2Size + 1, 0));
+    int maxLen = 0;
+    int posEnd = 0;
+
+    for (int i = 1; i <= str1Size; i++) {
+        for (int j = 1; j <= str2Size; j++) {
+            if (str1[i - 1] == str2[j - 1]) {
+                dp[i][j] = dp[i - 1][j - 1] + 1;
+                if (dp[i][j] > maxLen) {
+                    maxLen = dp[i][j];
+                    posEnd = i;
+                }
+            } else {
+                dp[i][j] = 0;
+            }
+        }
+    }
+
+   if (maxLen > 0) {
+        return str1.substr(posEnd - maxLen, maxLen);
+    } else {
+        return "";
+    }
+}
+
+void LCSubstringOutput(const vector<string>& transmissions, string& outputText) {
     outputText += "============\n";
+    outputText += "Los Substrings mas largos son:\n";
+    for (int i = 0; i < transmissions.size(); ++i) {
+        for (int j = i + 1; j < transmissions.size(); ++j) {
+            string lcs = LCSubstring(transmissions[i], transmissions[j]);
+            outputText += "T" + to_string(i+1) + " - T" + to_string(j+1) + ": " + lcs + "\n";
+        }
+    }
+  
 }
 
 //Complejidad O(n*m)
@@ -166,8 +213,10 @@ int main() {
     vector<string> transmissions;
     vector<string> mcodes;
     vector <string> mirrorCodes;
+    vector <string> longestCommonCode;
     string filename;
     string outputText="";
+
 
     //TRANSMISSION FILES
     for(int i=0;i<3;i++){
@@ -205,13 +254,15 @@ int main() {
         input.close();
     }
 
-    //FIND PALINDROMES
-    
-
-
-    //FIND MALICIOUS CODES
+    // ENCONTRAR CODIGOS MALICIOSOS (KMP)
     findCodes(transmissions,mcodes, outputText);
+
+    // ECONTRAR ESPEJOS ( PALINDROMO MAS LARGO)
     PalindromeOutput(transmissions,outputText);
+
+    // ENCONTRAR SIMILITUDES EN TRANSMISIONES (LONGEST COMMON SUBSTRING)
+    LCSubstringOutput(transmissions, outputText);
+
 
     //OUTPUT
     ofstream outputFile("checking0.txt");
@@ -224,5 +275,8 @@ int main() {
     } else {
         cout<< "No se pudo escribir en el achivo de output";
     }
+
+
+
     return 0;
 }
