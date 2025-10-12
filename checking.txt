@@ -5,7 +5,7 @@ transmission2.txt ==> 2 veces
 574, 667
 transmission3.txt ==> 0 veces
 
-La subsecuencia más encontrada es: A con 56 veces en el archivo transmissions1.txt
+La subsecuencia mas encontrada es: A con 56 veces en el archivo transmissions1.txt
 --------------
  
 Código: A13 
@@ -15,7 +15,7 @@ transmission2.txt ==> 1 veces
 253
 transmission3.txt ==> 1 veces
 344
-La subsecuencia más encontrada es: 13 con 8 veces en el archivo transmissions2.txt
+La subsecuencia mas encontrada es: 13 con 8 veces en el archivo transmissions2.txt
 --------------
  
 Código: 73A2 
@@ -25,7 +25,7 @@ transmission2.txt ==> 0 veces
 
 transmission3.txt ==> 0 veces
 
-La subsecuencia más encontrada es: 7A2 con 1 veces en el archivo transmissions3.txt
+La subsecuencia mas encontrada es: 7A2 con 1 veces en el archivo transmissions3.txt
 --------------
  
 Código: 1C3 
@@ -35,7 +35,7 @@ transmission2.txt ==> 0 veces
 
 transmission3.txt ==> 1 veces
 527
-La subsecuencia más encontrada es: 13 con 8 veces en el archivo transmissions2.txt
+La subsecuencia mas encontrada es: 13 con 8 veces en el archivo transmissions2.txt
 --------------
  
 Código: CDEC 
@@ -45,7 +45,7 @@ transmission2.txt ==> 0 veces
 
 transmission3.txt ==> 4 veces
 17, 269, 282, 466
-La subsecuencia más encontrada es: DEC con 4 veces en el archivo transmissions1.txt
+La subsecuencia mas encontrada es: DEC con 4 veces en el archivo transmissions1.txt
 --------------
  
 Código: FFF 
@@ -55,7 +55,7 @@ transmission2.txt ==> 0 veces
 
 transmission3.txt ==> 5 veces
 352, 353, 354, 355, 356
-La subsecuencia más encontrada es: FF con 9 veces en el archivo transmissions3.txt
+La subsecuencia mas encontrada es: FF con 9 veces en el archivo transmissions3.txt
 --------------
  
 Código: 139 
@@ -65,7 +65,7 @@ transmission2.txt ==> 4 veces
 254, 680, 683, 686
 transmission3.txt ==> 2 veces
 441, 537
-La subsecuencia más encontrada es: 39 con 10 veces en el archivo transmissions2.txt
+La subsecuencia mas encontrada es: 39 con 10 veces en el archivo transmissions2.txt
 --------------
  
 Código: CF40 
@@ -75,7 +75,7 @@ transmission2.txt ==> 1 veces
 994
 transmission3.txt ==> 0 veces
 
-La subsecuencia más encontrada es: F40 con 2 veces en el archivo transmissions1.txt
+La subsecuencia mas encontrada es: F40 con 2 veces en el archivo transmissions1.txt
 --------------
  
 Código: 77 
@@ -85,7 +85,7 @@ transmission2.txt ==> 6 veces
 22, 414, 415, 646, 745, 974
 transmission3.txt ==> 6 veces
 66, 427, 637, 638, 639, 640
-La subsecuencia más encontrada es: 7 con 74 veces en el archivo transmissions2.txt
+La subsecuencia mas encontrada es: 7 con 74 veces en el archivo transmissions2.txt
 --------------
  
 Código: 567 
@@ -95,7 +95,7 @@ transmission2.txt ==> 1 veces
 272
 transmission3.txt ==> 0 veces
 
-La subsecuencia más encontrada es: 67 con 7 veces en el archivo transmissions2.txt
+La subsecuencia mas encontrada es: 67 con 7 veces en el archivo transmissions2.txt
 --------------
  
 ============
@@ -107,7 +107,7 @@ C8F8C
 transmission3.txt ==> Posicion: 351
 0FFFFFFF0
 ============
-Los Substrings mas largos son:
+Los substrings mas largos entre transmisiones son:
 T1 - T2: 943A5
 T1 - T3: CDEC
 T2 - T3: 571139
