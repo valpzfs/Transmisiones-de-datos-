@@ -88,7 +88,7 @@ void findSubsequences(vector<string> transmissions, string mcode, string &output
             }
         }   
     }
-    outputText+="La subsecuencia más encontrada es: " +bestSubseq +" con "+ to_string(mostTimes) +" veces en el archivo transmissions" + to_string(bestFile +1) +".txt\n";
+    outputText+="La subsecuencia mas encontrada es: " +bestSubseq +" con "+ to_string(mostTimes) +" veces en el archivo transmissions" + to_string(bestFile +1) +".txt\n";
 }
 
 //Complejidad O(n*m)
@@ -215,7 +215,7 @@ string LCSubstring(const string& str1, const string& str2) {
 //print con formato del LCS
 void LCSubstringOutput(const vector<string>& transmissions, string& outputText) {
     outputText += "============\n";
-    outputText += "Los Substrings mas largos son:\n";
+    outputText += "Los substrings mas largos son:\n";
     for (int i = 0; i < transmissions.size(); ++i) {
         for (int j = i + 1; j < transmissions.size(); ++j) {
             string lcs = LCSubstring(transmissions[i], transmissions[j]);
