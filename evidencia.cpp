@@ -1,11 +1,9 @@
 // E1. Actividad Integradora 1 
 // 12 de octubre del 2025
 /*
-
     EQUIPO:
     Amparo Alcaraz Tonella A01253885
     Valeria López Flores A00838648
-
 */
 #include <iostream>
 #include <fstream>
@@ -38,7 +36,7 @@ void constructLps(string &pat, vector<int> &lps) {
 }
 
 //Complejidad O(n+m)
-//se buscan todas las ocurrencias del patron dentro del txt usando KMP
+//se buscan todas las ocurrencias del patron dentro del los archivos de transmission usando el algoritmo de KMP
 vector<int> KMPsearch(string &pat, string &txt) {
     int n = txt.length();
     int m = pat.length();
@@ -68,7 +66,7 @@ vector<int> KMPsearch(string &pat, string &txt) {
 }
 
 //Complejidad O(n*m)
-//busca la subsecuencia mas frecuente del uno de los codigos maliciosos en los txt de transmissions
+//busca la subsecuencia mas frecuente de un codigo malicioso en los txt de transmissions
 void findSubsequences(vector<string> transmissions, string mcode, string &outputText){
     string bestSubseq;
     int bestFile;
@@ -92,7 +90,7 @@ void findSubsequences(vector<string> transmissions, string mcode, string &output
 }
 
 //Complejidad O(n*m)
-//busca codigos maliciosos en los txt de transmission y hace un llamado a la funcion de las subsecuencias
+//busca codigos maliciosos en los archivos txt de transmission y hace un llamado a la funcion de las subsecuencias
 void findCodes(vector<string> transmissions, vector<string>mcodes, string &outputText){
     string maxFound;
     int timesFound=0;
@@ -117,7 +115,7 @@ void findCodes(vector<string> transmissions, vector<string>mcodes, string &outpu
 }
 
 //Complejidad O(n)
-// se encuentra el palindromo mas largo (codigo espejeado dentro de los archivos de transmission) usando Manacher
+//se encuentra el palindromo mas largo (codigo espejeado dentro de los archivos de transmission) usando el algoritmo de Manacher
 string longestPalindrome(string s, int &start) {
     string T = "^";
     for (char c : s) {
@@ -160,7 +158,7 @@ string longestPalindrome(string s, int &start) {
 
 
 
-// print con el formato del codigo espejeado
+// print con el formato del palindromo mas largo encontrado
 void PalindromeOutput(vector<string> transmissions, string &outputText){
     string mirrorCodes;
     outputText += "============\n";
@@ -178,7 +176,8 @@ void PalindromeOutput(vector<string> transmissions, string &outputText){
 }
 
 //Complejidad O(n*m)
-//encuentra el substring comun mas largo entre los strings (en este caso con nuestros archivos de transmissions)
+//busca el substring comun mas largo entre los pares de archivos de transmissions
+// t1 - t2, t1 - t3, t2 - t3.
 string LCSubstring(const string& str1, const string& str2) {
     int str1Size = str1.size();
     int str2Size = str2.size();
@@ -212,10 +211,10 @@ string LCSubstring(const string& str1, const string& str2) {
 }
 
 
-//print con formato del LCS
+//print con formato del longest common substring de los archivos de transmission
 void LCSubstringOutput(const vector<string>& transmissions, string& outputText) {
     outputText += "============\n";
-    outputText += "Los substrings mas largos son:\n";
+    outputText += "Los substrings mas largos entre transmisiones son:\n";
     for (int i = 0; i < transmissions.size(); ++i) {
         for (int j = i + 1; j < transmissions.size(); ++j) {
             string lcs = LCSubstring(transmissions[i], transmissions[j]);
