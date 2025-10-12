@@ -1,7 +1,5 @@
-
-
 // E1. Actividad Integradora 1 
-//
+// 12 de octubre del 2025
 /*
 
     EQUIPO:
@@ -17,6 +15,7 @@
 using namespace std;
 
 //Complejidad O(n)
+//calculo del arreglo LPS para usarse en KMP
 void constructLps(string &pat, vector<int> &lps) {
     int len = 0;
     lps[0] = 0;
@@ -39,6 +38,7 @@ void constructLps(string &pat, vector<int> &lps) {
 }
 
 //Complejidad O(n+m)
+//se buscan todas las ocurrencias del patron dentro del txt usando KMP
 vector<int> KMPsearch(string &pat, string &txt) {
     int n = txt.length();
     int m = pat.length();
@@ -67,7 +67,57 @@ vector<int> KMPsearch(string &pat, string &txt) {
     return res;
 }
 
+//Complejidad O(n*m)
+//busca la subsecuencia mas frecuente del uno de los codigos maliciosos en los txt de transmissions
+void findSubsequences(vector<string> transmissions, string mcode, string &outputText){
+    string bestSubseq;
+    int bestFile;
+    int mostTimes=0;
+    vector<int> holder;
+    //cout<<mcode<<endl;
+    for (int i=0; i<mcode.size(); i++){
+        string sub=mcode;
+        sub.erase(i, 1);
+        //cout<<"subseq  "<<sub<<endl;
+        for(int t=0;t<transmissions.size();t++){
+            holder=KMPsearch(sub, transmissions[t]);
+            if(holder.size()>mostTimes){
+                mostTimes=holder.size();
+                bestFile=t;
+                bestSubseq=sub;
+            }
+        }   
+    }
+    outputText+="La subsecuencia más encontrada es: " +bestSubseq +" con "+ to_string(mostTimes) +" veces en el archivo transmissions" + to_string(bestFile +1) +".txt\n";
+}
+
+//Complejidad O(n*m)
+//busca codigos maliciosos en los txt de transmission y hace un llamado a la funcion de las subsecuencias
+void findCodes(vector<string> transmissions, vector<string>mcodes, string &outputText){
+    string maxFound;
+    int timesFound=0;
+    for(int i=0;i<mcodes.size();i++){
+        outputText += "Código: " + mcodes[i]+" \n";
+        for(int j=0;j<transmissions.size();j++){
+            vector<int> res = KMPsearch(mcodes[i], transmissions[j]);
+            outputText += "transmission"+ to_string(j+1) + ".txt ==> ";
+            outputText += to_string(res.size()) + " veces\n";
+            for(int i=0;i<res.size();i++){
+                outputText+= to_string(res[i]);
+                if(i<res.size()-1){
+                    outputText+=", ";
+                }
+            }
+            outputText+= "\n";
+        }
+        findSubsequences(transmissions, mcodes[i], outputText);
+        
+        outputText+= "--------------\n \n";
+    }
+}
+
 //Complejidad O(n)
+// se encuentra el palindromo mas largo (codigo espejeado dentro de los archivos de transmission) usando Manacher
 string longestPalindrome(string s, int &start) {
     string T = "^";
     for (char c : s) {
@@ -110,6 +160,7 @@ string longestPalindrome(string s, int &start) {
 
 
 
+// print con el formato del codigo espejeado
 void PalindromeOutput(vector<string> transmissions, string &outputText){
     string mirrorCodes;
     outputText += "============\n";
@@ -127,6 +178,7 @@ void PalindromeOutput(vector<string> transmissions, string &outputText){
 }
 
 //Complejidad O(n*m)
+//encuentra el substring comun mas largo entre los strings (en este caso con nuestros archivos de transmissions)
 string LCSubstring(const string& str1, const string& str2) {
     int str1Size = str1.size();
     int str2Size = str2.size();
@@ -159,6 +211,8 @@ string LCSubstring(const string& str1, const string& str2) {
     }
 }
 
+
+//print con formato del LCS
 void LCSubstringOutput(const vector<string>& transmissions, string& outputText) {
     outputText += "============\n";
     outputText += "Los Substrings mas largos son:\n";
@@ -169,53 +223,6 @@ void LCSubstringOutput(const vector<string>& transmissions, string& outputText) 
         }
     }
   
-}
-
-//Complejidad O(n*m)
-void findSubsequences(vector<string> transmissions, string mcode, string &outputText){
-    string bestSubseq;
-    int bestFile;
-    int mostTimes=0;
-    vector<int> holder;
-    //cout<<mcode<<endl;
-    for (int i=0; i<mcode.size(); i++){
-        string sub=mcode;
-        sub.erase(i, 1);
-        //cout<<"subseq  "<<sub<<endl;
-        for(int t=0;t<transmissions.size();t++){
-            holder=KMPsearch(sub, transmissions[t]);
-            if(holder.size()>mostTimes){
-                mostTimes=holder.size();
-                bestFile=t;
-                bestSubseq=sub;
-            }
-        }   
-    }
-    outputText+="La subsecuencia más encontrada es: " +bestSubseq +" con "+ to_string(mostTimes) +" veces en el archivo" + to_string(bestFile) +".txt\n";
-}
-
-//Complejidad O(n*m)
-void findCodes(vector<string> transmissions, vector<string>mcodes, string &outputText){
-    string maxFound;
-    int timesFound=0;
-    for(int i=0;i<mcodes.size();i++){
-        outputText += "Código: " + mcodes[i]+" \n";
-        for(int j=0;j<transmissions.size();j++){
-            vector<int> res = KMPsearch(mcodes[i], transmissions[j]);
-            outputText += "transmission"+ to_string(j+1) + ".txt ==> ";
-            outputText += to_string(res.size()) + " veces\n";
-            for(int i=0;i<res.size();i++){
-                outputText+= to_string(res[i]);
-                if(i<res.size()-1){
-                    outputText+=", ";
-                }
-            }
-            outputText+= "\n";
-        }
-        findSubsequences(transmissions, mcodes[i], outputText);
-        
-        outputText+= "--------------\n \n";
-    }
 }
 
 
@@ -276,7 +283,7 @@ int main() {
 
 
     //OUTPUT
-    ofstream outputFile("checking0.txt");
+    ofstream outputFile("checking.txt");
     if (outputFile.is_open()) {
         outputFile << outputText;
         cout<<outputText<<endl;
